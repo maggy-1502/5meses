@@ -1,31 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Felices 5 Meses ❤️</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- ============================================================ -->
+    <!-- ⚙️ SECCIÓN DE CONFIGURACIÓN (CAMBIA AQUÍ TUS COSAS AL INSTANTE) -->
+    <!-- ============================================================ -->
+    <script>
+        // ⏳ 1. TU FECHA DE ANIVERSARIO: (Año, Mes menos 1, Día, Hora, Minuto)
+        // Ejemplo: Si empezaron el 15 de Octubre de 2025 pones (2025, 9, 15, 0, 0)
+        const fechaInicio = new Date(2026, 1, 12, 0, 0); 
 
-const COLORS = {
-  pastelPink: "#f9c5d1",
-  peach: "#f7bfae",
-  lilac: "#cbb4d4",
-  white: "#ffffff",
-  softGold: "#d4b483",
-  nightBlue: "#0b1a3f",
-  darkPurple: "#3a1f4a",
-  black: "#000000",
-  orange: "#f08a5d",
-};
+        // 🎵 2. NOMBRE DE TU ARCHIVO DE MÚSICA (Debe estar en la misma carpeta)
+        const nombreMusica = "https://files.catbox.moe/0hx6km.mp3";
 
-const FONTS = {
-  greatVibes: "'Great Vibes', cursive",
-  poppins: "'Poppins', sans-serif",
-};
+        // 📸 3. NOMBRES DE TUS 4 FOTOS (Deben estar en la misma carpeta)
+        const foto1 = "https://i.postimg.cc/mkyyvng9/IMG-20260522-WA0045.jpg";
+        const foto2 = "https://i.postimg.cc/yxyyMG8S/IMG-20260529-WA0077.jpg";
+        const foto3 = "https://i.postimg.cc/3NFFsqxv/IMG-20260522-WA0051.jpg";
+        const foto4 = "https://i.postimg.cc/J055fFzG/IMG-20260529-WA0089.jpg";
 
-const TEXTS = {
-  welcome1: "Para el hombre más lindo del mundo ❤️",
-  welcome2: "Felices 5 meses, mi amorcito.",
-  finalTitle: "Felices 5 meses ❤️",
-  finalThanks: "Gracias por llegar a mi vida.",
-  finalLove: "Te amo mucho muchote.",
-};
-
-const storyText = `Hola, mi amor. ❤️
+        // ✍️ 4. TEXTO DE TU CARTA
+        const textoAmor = `Hola, mi amorcito. ❤️
 
 Hoy cumplimos cinco meses juntos, y aunque parezca poco tiempo, siento que has llenado mi vida de una manera que nunca imaginé. Quería hacerte esta pequeña sorpresa para recordarte lo muchísimo que te amo y lo agradecida que estoy con Dios por haberte puesto en mi camino.
 
@@ -41,729 +40,225 @@ Quiero seguir escribiendo esta historia contigo durante muchísimo tiempo. Si Di
 
 Eres el amor de mi vida y no imagino un futuro en el que no estés tú. No sé qué sería de mí sin ti, porque contigo encontré un hogar, un mejor amigo y el amor más bonito que he conocido.
 
-Le pido a Dios que siempre nos cuide, que bendiga nuestra relación, que nos ayude a superar cualquier dificultad y que nos permita celebrar muchísimos meses, años y toda una vida juntos.
+Le pido a Dios que siempre nos cuide, que bendiga nuestra relación, que nos ayube a superar cualquier dificultad y que nos permita celebrar muchísimos meses, años y toda una vida juntos.
 
 Gracias por existir, por llegar a mi vida y por convertir estos cinco meses en los más felices que he vivido.
 
 Te amo con todo mi corazón.
 
-Felices cinco meses, mi niño bonito. ❤️`;
+Felices cinco meses, mi niño de ojos bonitos. ❤️`;
 
-const floralSVG = (
-  <svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 200 200"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}
-  >
-    <circle cx="50" cy="50" r="10" fill={COLORS.pastelPink} opacity={0.3} />
-    <circle cx="150" cy="150" r="15" fill={COLORS.lilac} opacity={0.3} />
-    <circle cx="100" cy="100" r="20" fill={COLORS.peach} opacity={0.2} />
-  </svg>
-);
 
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-  useEffect(() => {
-    savedCallback.current = callback;
-  });
-  useEffect(() => {
-    if (delay === null) return;
-    const id = setInterval(() => savedCallback.current(), delay);
-    return () => clearInterval(id);
-  }, [delay]);
-}
+;
+    </script>
+    <!-- ============================================================ -->
 
-function Heart({ style, className }) {
-  return (
-    <svg
-      className={className}
-      style={style}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill={COLORS.pastelPink}
-      width="24px"
-      height="24px"
-    >
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
-  );
-}
-
-function LottieHeart({ size = 100 }) {
-  // Heart beating animation using CSS keyframes
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        animation: "heartbeat 1.5s infinite",
-        filter: `drop-shadow(0 0 5px ${COLORS.pastelPink})`,
-      }}
-    >
-      <Heart style={{ width: "100%", height: "100%" }} />
-      <style>{`
-        @keyframes heartbeat {
-          0%, 100% { transform: scale(1); }
-          25% { transform: scale(1.15); }
-          50% { transform: scale(1); }
-          75% { transform: scale(1.1); }
+    <style>
+        :root {
+            --rosa-pastel: #ffb7b2; --durazno: #ffdac1; --lila: #e2cef4; --blanco: #ffffff;
+            --dorado: #e6c687; --azul-noche: #0b132b; --morado-oscuro: #1c1a27;
         }
-      `}</style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body, html { width: 100%; overflow-x: hidden; font-family: 'Poppins', sans-serif; background: #000; color: #fff; scroll-behavior: smooth; }
+        #bienvenida { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: opacity 1s ease; padding: 20px; }
+        .corazon-latido { font-size: 70px; animation: latido 1.2s infinite; margin-bottom: 30px; }
+        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        .texto-bienvenida { font-family: 'Great Vibes', cursive; font-size: 32px; color: var(--rosa-pastel); opacity: 0; position: absolute; transition: opacity 1s ease; width: 90%; }
+        .contenedor-principal { position: relative; width: 100vw; background: linear-gradient(to bottom, #ff9a9e 0%, #fecfef 10%, #fbc2eb 25%, #a18cd1 45%, #251c4a 65%, #0b132b 85%, #050814 100%); display: flex; flex-direction: column; align-items: center; padding-bottom: 100px; }
+        .estrellas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; pointer-events: none; z-index: 1; }
+        .estrella { position: absolute; background: white; border-radius: 50%; animation: parpadeo 2s infinite ease-in-out; }
+        @keyframes parpadeo { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+        .corazon-flotante { position: absolute; color: rgba(255, 183, 178, 0.6); pointer-events: none; z-index: 2; animation: flotar linear infinite; }
+        @keyframes flotar { 0% { transform: translateY(105vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+        .botones-fijos { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 15px; }
+        .btn-circular { width: 45px; height: 45px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.4); color: white; font-size: 20px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .seccion-sobre { height: 80vh; display: flex; justify-content: center; align-items: center; z-index: 10; perspective: 1000px; }
+        .sobre-wrapper { position: relative; width: 280px; height: 180px; background: #f4d068; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-radius: 0 0 8px 8px; }
+        .sobre-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-bottom: 90px solid #e1be53; z-index: 3; }
+        .sobre-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 0; border-left: 140px solid #edd071; border-right: 140px solid #edd071; border-top: 90px solid transparent; z-index: 4; border-radius: 0 0 8px 8px; }
+        .tapa { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 95px solid #dca743; transform-origin: top; transition: transform 0.6s ease; z-index: 5; }
+        .sello { position: absolute; top: 75px; left: 120px; width: 40px; height: 40px; background: #d9383a; border-radius: 50%; z-index: 6; display: flex; justify-content: center; align-items: center; color: white; font-size: 18px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s ease; }
+        .sobre-wrapper.abierto .tapa { transform: rotateX(180deg); z-index: 2; }
+        .hoja-carta { position: absolute; top: 10px; left: 15px; width: 250px; min-height: 150px; background: var(--blanco); color: #333; padding: 25px 15px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(0); transition: all 1s ease 0.6s; z-index: 3; opacity: 0; font-size: 14px; line-height: 1.6; background-size: 20px 20px; background-image: radial-gradient(var(--durazno) 1px, transparent 0); }
+        .sobre-wrapper.abierto .hoja-carta { opacity: 1; transform: translateY(-120px) scale(1.1); z-index: 100; width: 320px; left: -20px; min-height: 350px; }
+        .texto-carta { font-family: 'Poppins', sans-serif; font-weight: 400; text-align: left; white-space: pre-line; }
+        .firma { font-family: 'Great Vibes', cursive; font-size: 24px; text-align: right; margin-top: 15px; color: #b85770; }
+        .seccion-contador { margin: 60px 0; text-align: center; opacity: 0; transition: opacity 1s ease; width: 90%; }
+        .titulo-seccion { font-family: 'Great Vibes', cursive; font-size: 42px; color: var(--durazno); margin-bottom: 20px; }
+        .cuadrícula-contador { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 10px; }
+        .bloque-tiempo { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+        .numero-tiempo { font-size: 28px; font-weight: 600; color: var(--lila); }
+        .etiqueta-tiempo { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #ddd; }
+        .seccion-galeria { width: 100vw; margin: 40px 0; opacity: 0; transition: opacity 1s ease; }
+        .carrusel-horizontal { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px; gap: 20px; scrollbar-width: none; }
+        .carrusel-horizontal::-webkit-scrollbar { display: none; }
+        .foto-item { flex: 0 0 75%; scroll-snap-align: center; position: relative; transform: rotate(-2deg); transition: transform 0.3s ease; }
+        .foto-item:nth-child(even) { transform: rotate(3deg); }
+        .foto-item img { width: 100%; height: 350px; object-fit: cover; border-radius: 16px; border: 6px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .foto-item:active { transform: scale(1.05) rotate(0deg); }
+        .modo-noche-activo .contenedor-principal { background: linear-gradient(to bottom, var(--azul-noche), var(--morado-oscuro)) !important; transition: background 1s ease; }
+        .chispa { position: absolute; width: 8px; height: 8px; background: radial-gradient(circle, #fff 0%, rgba(255,218,193,0) 100%); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); animation: desvanecerChispa 0.6s forwards; }
+        @keyframes desvanecerChispa { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(0); opacity: 0; } }
+        .seccion-final { margin-top: 60px; text-align: center; padding: 40px 20px; opacity: 0; transition: opacity 1.5s ease; width: 100%; }
+        .gran-corazon { font-size: 100px; animation: latido 1s infinite; color: #d9383a; }
+        .texto-final-1 { font-size: 26px; font-weight: 600; margin: 20px 0; color: var(--rosa-pastel); }
+        .texto-final-2 { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--dorado); }
+        .gota-corazon { position: fixed; top: -20px; color: #ffb7b2; font-size: 20px; pointer-events: none; z-index: 9999; animation: caidaCorazones 3s linear forwards; }
+        @keyframes caidaCorazones { to { transform: translateY(105vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="botones-fijos">
+        <button class="btn-circular" id="btn-musica" onclick="toggleMusica()">▶</button>
+        <button class="btn-circular" id="btn-noche" onclick="toggleModoNoche()">🌙</button>
     </div>
-  );
-}
 
-function Particles({ count = 50 }) {
-  // small bright particles randomly placed and twinkling
-  const [particles, setParticles] = useState([]);
-
-  useEffect(() => {
-    const arr = [];
-    for (let i = 0; i < count; i++) {
-      arr.push({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 0.5 + Math.random() * 1.5,
-        delay: Math.random() * 5,
-      });
-    }
-    setParticles(arr);
-  }, [count]);
-
-  return (
-    <>
-      {particles.map(({ id, x, y, size, delay }) => (
-        <div
-          key={id}
-          style={{
-            position: "absolute",
-            top: `${y}%`,
-            left: `${x}%`,
-            width: size + "px",
-            height: size + "px",
-            backgroundColor: COLORS.white,
-            borderRadius: "50%",
-            filter: "drop-shadow(0 0 3px white)",
-            animation: `twinkle 3s infinite`,
-            animationDelay: `${delay}s`,
-            pointerEvents: "none",
-          }}
-        />
-      ))}
-      <style>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-      `}</style>
-    </>
-  );
-}
-
-function BackgroundGradient({ scrollY }) {
-  // scrollY from 0 to 1 (0 top, 1 bottom)
-  // interpolate colors from sunset to night
-  // colors: pastelPink, orange, peach, lilac, nightBlue, darkPurple + stars
-
-  // We'll create a vertical gradient that changes with scrollY
-
-  // Interpolate colors based on scrollY
-  // We'll define stops at 0, 0.25, 0.5, 0.75, 1
-
-  function lerpColor(a, b, t) {
-    const ah = parseInt(a.replace("#", ""), 16);
-    const ar = (ah >> 16) & 0xff;
-    const ag = (ah >> 8) & 0xff;
-    const ab = ah & 0xff;
-
-    const bh = parseInt(b.replace("#", ""), 16);
-    const br = (bh >> 16) & 0xff;
-    const bg = (bh >> 8) & 0xff;
-    const bb = bh & 0xff;
-
-    const rr = ar + (br - ar) * t;
-    const rg = ag + (bg - ag) * t;
-    const rb = ab + (bb - ab) * t;
-
-    return `rgb(${rr},${rg},${rb})`;
-  }
-
-  let color1, color2, t;
-
-  if (scrollY < 0.25) {
-    t = scrollY / 0.25;
-    color1 = lerpColor(COLORS.pastelPink, COLORS.orange, t);
-    color2 = lerpColor(COLORS.orange, COLORS.peach, t);
-  } else if (scrollY < 0.5) {
-    t = (scrollY - 0.25) / 0.25;
-    color1 = lerpColor(COLORS.orange, COLORS.peach, t);
-    color2 = lerpColor(COLORS.peach, COLORS.lilac, t);
-  } else if (scrollY < 0.75) {
-    t = (scrollY - 0.5) / 0.25;
-    color1 = lerpColor(COLORS.peach, COLORS.lilac, t);
-    color2 = lerpColor(COLORS.lilac, COLORS.nightBlue, t);
-  } else {
-    t = (scrollY - 0.75) / 0.25;
-    color1 = lerpColor(COLORS.lilac, COLORS.nightBlue, t);
-    color2 = lerpColor(COLORS.nightBlue, COLORS.darkPurple, t);
-  }
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        background: `linear-gradient(to bottom, ${color1}, ${color2})`,
-        transition: "background 1s ease",
-        zIndex: -10,
-      }}
-    />
-  );
-}
-
-function Stars({ count = 100, nightMode }) {
-  // stars appear only in night mode or bottom scroll
-  const [stars, setStars] = useState([]);
-
-  useEffect(() => {
-    const arr = [];
-    for (let i = 0; i < count; i++) {
-      arr.push({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 0.5 + Math.random() * 1.5,
-        delay: Math.random() * 5,
-        opacity: 0.3 + Math.random() * 0.7,
-      });
-    }
-    setStars(arr);
-  }, [count]);
-
-  if (!nightMode) return null;
-
-  return (
-    <>
-      {stars.map(({ id, x, y, size, delay, opacity }) => (
-        <div
-          key={id}
-          style={{
-            position: "fixed",
-            top: `${y}%`,
-            left: `${x}%`,
-            width: size + "px",
-            height: size + "px",
-            backgroundColor: COLORS.white,
-            borderRadius: "50%",
-            filter: "drop-shadow(0 0 5px white)",
-            animation: `starTwinkle 4s infinite`,
-            animationDelay: `${delay}s`,
-            opacity,
-            pointerEvents: "none",
-            zIndex: -5,
-          }}
-        />
-      ))}
-      <style>{`
-        @keyframes starTwinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-      `}</style>
-    </>
-  );
-}
-
-function FloatingHearts() {
-  // hearts floating upwards with different sizes and speeds
-  const [hearts, setHearts] = useState([]);
-
-  useEffect(() => {
-    const arr = [];
-    for (let i = 0; i < 15; i++) {
-      arr.push({
-        id: i,
-        left: Math.random() * 100,
-        size: 10 + Math.random() * 20,
-        duration: 8000 + Math.random() * 7000,
-        delay: Math.random() * 10000,
-      });
-    }
-    setHearts(arr);
-  }, []);
-
-  return (
-    <>
-      {hearts.map(({ id, left, size, duration, delay }) => (
-        <div
-          key={id}
-          style={{
-            position: "fixed",
-            bottom: "-30px",
-            left: `${left}%`,
-            width: size,
-            height: size,
-            animation: `floatUp${id} ${duration}ms linear infinite`,
-            animationDelay: `${delay}ms`,
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        >
-          <Heart style={{ width: "100%", height: "100%" }} />
-          <style>{`
-            @keyframes floatUp${id} {
-              0% { transform: translateY(0) scale(1); opacity: 1; }
-              100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
-            }
-          `}</style>
-        </div>
-      ))}
-    </>
-  );
-}
-
-function WelcomeScreen({ onFinish }) {
-  const [showSecondText, setShowSecondText] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setShowSecondText(true), 3500);
-    const t2 = setTimeout(() => setFadeOut(true), 7000);
-    const t3 = setTimeout(() => onFinish(), 9000);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, [onFinish]);
-
-  return (
-    <div
-      style={{
-        backgroundColor: COLORS.black,
-        color: COLORS.pastelPink,
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: FONTS.greatVibes,
-        fontSize: 24,
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-        transition: "opacity 2s ease",
-        opacity: fadeOut ? 0 : 1,
-      }}
-    >
-      <Particles count={40} />
-      <LottieHeart size={120} />
-      <div style={{ marginTop: 20, maxWidth: "80vw" }}>{TEXTS.welcome1}</div>
-      {showSecondText && (
-        <div
-          style={{
-            marginTop: 20,
-            fontSize: 20,
-            fontFamily: FONTS.poppins,
-            opacity: fadeOut ? 0 : 1,
-            transition: "opacity 2s ease",
-          }}
-        >
-          {TEXTS.welcome2}
-        </div>
-      )}
+    <div id="bienvenida">
+        <div class="corazon-latido">❤️</div>
+        <div class="texto-bienvenida" id="txt1">Para el niño más bonito del mundo ❤️</div>
+        <div class="texto-bienvenida" id="txt2">Felices 5 meses, mi amor.</div>
     </div>
-  );
+
+    <div class="contenedor-principal" id="scroll-area">
+        <div class="estrellas" id="capa-estrellas"></div>
+
+        <div class="seccion-sobre">
+            <div class="sobre-wrapper" id="sobre">
+                <div class="tapa"></div>
+                <div class="sello" id="sello-carta" onclick="abrirCarta()">❤️</div>
+Para siempre, Yo
+El tiempo a tu lado...
+❤️ 5Meses
+00Días
+00Horas
+00Minutos
+Nuestros Momentos
+❤️
+Felices 5 meses ❤️
+Gracias por llegar a mi vida.
+Te amo mucho muchote.
+const audioInyectado = document.createElement('audio');
+audioInyectado.id = 'musica';
+audioInyectado.loop = true;
+audioInyectado.src = nombreMusica;
+document.body.appendChild(audioInyectado);
+document.getElementById('f1').src = foto1;
+document.getElementById('f2').src = foto2;
+document.getElementById('f3').src = foto3;
+document.getElementById('f4').src = foto4;
+window.addEventListener('DOMContentLoaded', () => {
+const txt1 = document.getElementById('txt1');
+const txt2 = document.getElementById('txt2');
+const bienvenida = document.getElementById('bienvenida');
+setTimeout(() => { txt1.style.opacity = 1;}, 500);
+setTimeout(() => { txt1.style.opacity = 0; }, 3000);
+setTimeout(() => { txt2.style.opacity = 1; }, 4200);
+setTimeout(() => { txt2.style.opacity = 0; }, 7000);
+setTimeout(() => { bienvenida.style.opacity = 0;
+setTimeout(() => bienvenida.style.display = 'none', 1000); iniciarElementosAmbiente(); }, 8200);
+});
+function iniciarElementosAmbiente() {
+const capaEstrellas = document.getElementById('capa-estrellas');
+for(let i=0; i<80; i++) {
+let estrella = document.createElement('div');
+estrella.className = 'estrella';
+estrella.style.width = estrella.style.height = Math.random() * 3 + 'px';
+estrella.style.top = Math.random() * 100 + '%';
+estrella.style.left = Math.random() * 100 + '%';
+estrella.style.animationDelay = Math.random() * 2 + 's';
+capaEstrellas.appendChild(estrella);
 }
-
-function Envelope({ onOpen }) {
-  const [opened, setOpened] = useState(false);
-  const [showLetter, setShowLetter] = useState(false);
-  const sealRef = useRef(null);
-
-  function handleSealClick() {
-    if (opened) return;
-    if (navigator.vibrate) navigator.vibrate(100);
-    setOpened(true);
-    setTimeout(() => {
-      setShowLetter(true);
-      onOpen();
-    }, 1000);
-  }
-
-  return (
-    <div
-      style={{
-        width: 200,
-        height: 140,
-        background:
-          "linear-gradient(135deg, #f7bfae 0%, #f9c5d1 50%, #f7bfae 100%)",
-        borderRadius: 20,
-        boxShadow:
-          "0 8px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(255,255,255,0.6)",
-        position: "relative",
-        margin: "40px auto",
-        perspective: 800,
-        cursor: opened ? "default" : "pointer",
-        userSelect: "none",
-      }}
-      aria-label="Sobre con carta"
-    >
-      {/* flap */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "60%",
-          background:
-            "linear-gradient(135deg, #f08a5d 0%, #f9c5d1 50%, #f08a5d 100%)",
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          transformOrigin: "bottom center",
-          transform: opened ? "rotateX(-120deg)" : "rotateX(0deg)",
-          transition: "transform 1s ease",
-          boxShadow:
-            "0 4px 10px rgba(0,0,0,0.25), inset 0 0 8px rgba(255,255,255,0.7)",
-          zIndex: 5,
-        }}
-      />
-      {/* body */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "60%",
-          background:
-            "linear-gradient(135deg, #f9c5d1 0%, #f7bfae 50%, #f9c5d1 100%)",
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
-          boxShadow:
-            "inset 0 0 10px rgba(255,255,255,0.6), 0 4px 10px rgba(0,0,0,0.2)",
-          zIndex: 1,
-        }}
-      />
-      {/* seal */}
-      {!opened && (
-        <div
-          ref={sealRef}
-          onClick={handleSealClick}
-          style={{
-            position: "absolute",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 40,
-            height: 40,
-            backgroundColor: COLORS.pastelPink,
-            borderRadius: "50%",
-            boxShadow:
-              "0 0 10px rgba(255, 192, 203, 0.8), inset 0 0 5px rgba(255, 182, 193, 0.9)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer",
-            userSelect: "none",
-            filter: "drop-shadow(0 0 3px #f9c5d1)",
-            transition: "opacity 0.5s ease",
-            zIndex: 10,
-          }}
-          aria-label="Sello de corazón, toca para abrir la carta"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleSealClick();
-            }
-          }}
-        >
-          <Heart style={{ width: 20, height: 20, fill: COLORS.softGold }} />
-        </div>
-      )}
-      {showLetter && <Letter />}
-    </div>
-  );
+setInterval(() => {
+let corazon = document.createElement('div');
+corazon.className = 'corazon-flotante';
+corazon.innerText = '❤️';
+corazon.style.left = Math.random() * 90 + 'vw';
+corazon.style.fontSize = Math.random() * 15 + 10 + 'px';
+corazon.style.animationDuration = Math.random() * 4 + 4 + 's';
+document.getElementById('scroll-area').appendChild(corazon);
+setTimeout(() => corazon.remove(), 8000);
+}, 600);
 }
-
-function Letter() {
-  const [displayedText, setDisplayedText] = useState("");
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [finished, setFinished] = useState(false);
-  const typingRef = useRef(null);
-
-  useEffect(() => {
-    if (paused || finished) return;
-    if (index >= storyText.length) {
-      setFinished(true);
-      return;
-    }
-    const char = storyText[index];
-    let delay = 50;
-    if (char === "," || char === ".") delay = 400;
-    if (char === "\n") delay = 600;
-    typingRef.current = setTimeout(() => {
-      setDisplayedText((d) => d + char);
-      setIndex((i) => i + 1);
-    }, delay);
-    return () => clearTimeout(typingRef.current);
-  }, [index, paused, finished]);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: "10%",
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: 180,
-        height: 120,
-        backgroundColor: COLORS.white,
-        borderRadius: 20,
-        boxShadow:
-          "0 8px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(255,255,255,0.9)",
-        padding: 20,
-        fontFamily: FONTS.poppins,
-        fontSize: 14,
-        color: COLORS.darkPurple,
-        overflowY: "auto",
-        userSelect: "text",
-        zIndex: 20,
-        position: "relative",
-      }}
-      aria-label="Carta con mensaje de amor"
-    >
-      {floralSVG}
-      <pre
-        style={{
-          whiteSpace: "pre-wrap",
-          margin: 0,
-          position: "relative",
-          zIndex: 10,
-          lineHeight: 1.4,
-          userSelect: "text",
-        }}
-      >
-        {displayedText}
-        {!finished && <span className="blinking-cursor">|</span>}
-      </pre>
-      <style>{`
-        .blinking-cursor {
-          animation: blink 1s step-start 0s infinite;
-          color: ${COLORS.softGold};
-          font-weight: bold;
-        }
-        @keyframes blink {
-          0%, 50% { opacity: 1; }
-          50.01%, 100% { opacity: 0; }
-        }
-      `}</style>
-    </div>
-  );
+const audio = document.getElementById('musica');
+const btnMusica = document.getElementById('btn-musica');
+function toggleMusica() {
+if (audio.paused) { audio.play().catch(e => console.log("Interacción requerida"));
+btnMusica.innerText = "⏸"; }else { audio.pause(); btnMusica.innerText = "▶"; }
 }
-
-function Counter({ startDate }) {
-  const [now, setNow] = useState(new Date());
-
-  useInterval(() => {
-    setNow(new Date());
-  }, 1000);
-
-  const diff = now - startDate;
-  const diffSeconds = Math.floor(diff / 1000);
-  const months = 5;
-  const days = Math.floor(diffSeconds / (3600 * 24));
-  const hours = Math.floor((diffSeconds % (3600 * 24)) / 3600);
-  const minutes = Math.floor((diffSeconds % 3600) / 60);
-
-  return (
-    <div
-      style={{
-        marginTop: 40,
-        textAlign: "center",
-        fontFamily: FONTS.poppins,
-        color: COLORS.pastelPink,
-        fontSize: 18,
-        userSelect: "none",
-      }}
-      aria-label="Contador de tiempo de relación"
-    >
-      <div style={{ marginBottom: 8, fontWeight: "bold", fontSize: 22 }}>
-        ❤️ {months} meses
-      </div>
-      <div>
-        📅 {days} días &nbsp;&nbsp; 🕒 {hours} horas &nbsp;&nbsp; ⏱ {minutes} minutos
-      </div>
-    </div>
-  );
+function toggleModoNoche() {
+document.body.classList.toggle('modo-noche-activo');
+const btn = document.getElementById('btn-noche'); 
+btn.innerText = document.body.classList.contains('modo-noche-activo') ? "☀️" : "🌙";
 }
-
-function Gallery({ photos }) {
-  const [zoomed, setZoomed] = useState(null);
-
-  function handlePhotoClick(i) {
-    setZoomed(i === zoomed ? null : i);
-  }
-
-  return (
-    <div
-      style={{
-        marginTop: 40,
-        overflowX: "auto",
-        display: "flex",
-        gap: 16,
-        padding: "0 20px",
-        scrollSnapType: "x mandatory",
-        userSelect: "none",
-      }}
-      aria-label="Galería de fotos"
-    >
-      {photos.map((src, i) => (
-        <div
-          key={i}
-          onClick={() => handlePhotoClick(i)}
-          style={{
-            flex: "0 0 auto",
-            width: 140,
-            height: 200,
-            borderRadius: 20,
-            boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-            overflow: "hidden",
-            transform: zoomed === i ? "scale(1.2) rotate(0deg)" : `rotate(${(i % 3) * 3 - 3}deg)`,
-            transition: "transform 0.3s ease",
-            cursor: "pointer",
-            scrollSnapAlign: "center",
-            backgroundColor: COLORS.white,
-            position: "relative",
-            zIndex: zoomed === i ? 10 : 1,
-          }}
-          tabIndex={0}
-          role="button"
-          aria-pressed={zoomed === i}
-          aria-label={`Foto ${i + 1}`}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handlePhotoClick(i);
-            }
-          }}
-        >
-          <img
-            src={src}
-            alt={`Foto ${i + 1}`}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: 20,
-              userSelect: "none",
-              pointerEvents: "none",
-            }}
-            draggable={false}
-          />
-        </div>
-      ))}
-    </div>
-  );
+let cartaAbierta = false;
+function abrirCarta() {
+if(cartaAbierta) return;
+cartaAbierta = true;
+if (navigator.vibrate) navigator.vibrate(40);
+document.getElementById('sello-carta').style.transform = 'scale(0)';
+document.getElementById('sobre').classList.add('abierto');
+if (audio.paused) toggleMusica();
+setTimeout(() => {
+let i = 0;
+const contenedorTexto = document.getElementById('texto-tipeado');
+function escribir() {
+if (i < textoAmor.length) {
+contenedorTexto.innerHTML += textoAmor.charAt(i); i++; let delay = 40;
+if(textoAmor.charAt(i-1) === '.' ||
+textoAmor.charAt(i-1) === ',') delay = 350;
+setTimeout(escribir, delay);
+} else {
+document.getElementById('firma-carta').style.display = 'block';
+document.getElementById('seccion-contador').style.opacity = 1;
+document.getElementById('seccion-galeria').style.opacity = 1;
+document.getElementById('seccion-final').style.opacity = 1;
+iniciarContador();
 }
-
-function MusicPlayer({ src, playing, onPlayPause }) {
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    if (!audioRef.current) return;
-    if (playing) {
-      audioRef.current.play().catch(() => {});
-    } else {
-      audioRef.current.pause();
-    }
-  }, [playing]);
-
-  return (
-    <div
-      style={{
-        marginTop: 20,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 20,
-      }}
-    >
-      <audio ref={audioRef} src={src} loop preload="auto" />
-      <button
-        onClick={onPlayPause}
-        style={{
-          fontSize: 24,
-          backgroundColor: COLORS.pastelPink,
-          border: "none",
-          borderRadius: 50,
-          width: 60,
-          height: 60,
-          color: COLORS.darkPurple,
-          cursor: "pointer",
-          userSelect: "none",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        aria-label={playing ? "Pausar música" : "Reproducir música"}
-      >
-        {playing ? "⏸" : "▶"}
-      </button>
-    </div>
-  );
 }
-
-function NightModeButton({ nightMode, toggleNightMode }) {
-  return (
-    <button
-      onClick={toggleNightMode}
-      style={{
-        position: "fixed",
-        top: 20,
-        right: 20,
-        width: 50,
-        height: 50,
-        borderRadius: "50%",
-        border: "none",
-        backgroundColor: nightMode ? COLORS.softGold : COLORS.pastelPink,
-        color: nightMode ? COLORS.darkPurple : COLORS.darkPurple,
-        fontSize: 24,
-        cursor: "pointer",
-        userSelect: "none",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-        transition: "background-color 1s ease",
-        zIndex: 100,
-      }}
-      aria-label="Modo noche"
-      title="Modo noche"
-    >
-      {nightMode ? "🌙" : "🌙"}
-    </button>
-  );
+escribir();
+}, 1600);
 }
-
-function TouchGlow() {
-  const [lights, setLights] = useState([]);
-
-  useEffect(() => {
-    function handleTouchMove(e) {
-      const touches = e.touches;
-      const newLights = [];
-      for (let i = 0; i < touches.length; i++) {
-        const t = touches[i];
-        newLights.push({
-         
+function iniciarContador() {
+setInterval(() => {
+const ahora = new Date();
+let diferencia = ahora - fechaInicio;
+let dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+let horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+let minutes = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+document.getElementById('c-dias').innerText = dias < 10 ? '0' + dias : dias;
+document.getElementById('c-horas').innerText = horas < 10 ? '0' + horas : horas;
+document.getElementById('c-mins').innerText = minutes < 10 ? '0' + minutes : minutes;
+}, 1000);
+}
+let lluviaActivada = false;
+window.addEventListener('scroll', () => {
+const seccionFinal = document.getElementById('seccion-final');
+const posicion = seccionFinal.getBoundingClientRect().top;
+const pantallaAltura = window.innerHeight;
+if(posicion < pantallaAltura && !lluviaActivada && cartaAbierta) {
+lluviaActivada = true;
+activarLluviaFinal(); 
+}
+});
+function activarLluviaFinal() {
+setInterval(() => {
+let gota = document.createElement('div');
+gota.className = 'gota-corazon';
+gota.innerText = ['❤️','💖','✨','💕'][Math.floor(Math.random()*4)];
+gota.style.left = Math.random() * 100 + 'vw';
+gota.style.fontSize = Math.random() * 20 + 15 + 'px';
+gota.style.animationName = 'caidaCorazones';
+document.body.appendChild(gota);
+setTimeout(() => gota.remove(), 3500);
+}, 150);
+}
+document.addEventListener('touchmove', (e) => {
+let touch = e.touches[0];
+let chispa = document.createElement('div');
+chispa.className = 'chispa';
+chispa.style.top = touch.pageY + 'px';
+chispa.style.left = touch.pageX + 'px';
+document.body.appendChild(chispa);
+setTimeout(() => chispa.remove(), 600);
+}, { passive: true });
