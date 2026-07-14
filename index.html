@@ -72,6 +72,40 @@
         @keyframes caidaCorazonesAnim { to { transform: translateY(105vh) rotate(360deg); } }
         
         .btn-cerrar-carta { display: block; margin: 20px auto 0 auto; padding: 10px 20px; background: #d9383a; color: white; border: none; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
+   /* Organiza los nuevos botones y el contador debajo de tus textos */
+.contenedor-inferior-detalles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo estético para tus dos botones */
+.boton-amor {
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.boton-amor:hover {
+    transform: scale(1.05);
+}
+
+.contador-estilo {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
     </style>
 </head>
 <body>
@@ -129,47 +163,34 @@
             </div>
         </div>
 
-        <!-- SECCIÓN FINAL -->
-        <div class="seccion-final" id="seccion-final">
+                <div class="seccion-final" id="seccion-final">
             <div class="gran-corazon">❤️</div>
             <div class="texto-final-1">Felices 5 meses ❤️</div>
             <div class="texto-final-2">Gracias por llegar a mi vida.<br>Te amo muchísimo.</div>
+            
+            <!-- SECCIÓN NUEVA: Ahora está DENTRO de seccion-final para que no se filtre abajo -->
+            <div class="contenedor-inferior-detalles">
+                <p class="texto-introduccion">Para siempre, Yo</p>
+                
+                <button id="btn-guardar-carta" class="boton-amor">Guardar carta ❤️</button>
+
+                <p class="texto-tiempo-titulo">El tiempo a tu lado...</p>
+                
+                <div id="contador-tiempo" class="contador-estilo">
+                    ❤️ 5 Meses 00 Días 00 Horas 00 Minutos 00 Segundos
+                </div>
+                
+                <button id="btn-nuestros-momentos" class="boton-amor">Nuestros Momentos ❤️</button>
+                
+                <div class="mensaje-final-bloque">
+                    <p>Felices 5 meses ❤️</p>
+                    <p>Gracias por llegar a mi vida.</p>
+                    <p class="resaltado">Te amo con toda mi alma.</p>
+                </div>
+            </div>
         </div>
-    </div> <!-- Cierre de contenedor-principal -->
+    </div> <!-- Cierre de contenedor-principal (ESTE DEBE QUEDAR AL FINAL) -->
 
-Para siempre, Yo
-
-                    
-                    Guardar carta ❤️
-
-
-                    
-                    El tiempo a tu lado...
-                    
-                    
-                    
-                    
-                    ❤️ 5Meses
-                    00Días
-                    00Horas
-                    00Minutos
-                    00Segundos
-                    
-                    
-                    Nuestros Momentos
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    ❤️
-                    Felices 5 meses ❤️
-                    Gracias por llegar a mi vida.
-                    Te amo con toda mi alma.
                     
                    <script>
                         
@@ -203,7 +224,18 @@ Para siempre, Yo
                     iniciarElementosAmbiente();}, 1000);
                     }, 6600);
                     }
-                    
+                    // ... (Tu código anterior de setTimeout para txt1 y txt2)
+setTimeout(function() {
+    bienvenida.style.opacity = 0;
+    setTimeout(function() {
+        bienvenida.style.display = 'none';
+        iniciarElementosAmbiente();
+        
+        // ESTA LÍNEA HACE QUE APAREZCA LA SECCIÓN FINAL CON TODO SU CONTENIDO AL MISMO TIEMPO
+        document.getElementById('seccion-final').style.opacity = 1; 
+    }, 1000);
+}, 6600);
+
                     function iniciarElementosAmbiente() {
                     var capaEstrellas = document.getElementById('capa-estrellas');
                     if (capaEstrellas) {
