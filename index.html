@@ -32,7 +32,7 @@
         .sobre-wrapper { position: relative; width: 280px; height: 180px; background: #f4d068; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-radius: 0 0 8px 8px; }
         .sobre-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-bottom: 90px solid #e1be53; z-index: 3; }
         .sobre-wrapper::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 0; border-left: 140px solid #edd071; border-right: 140px solid #edd071; border-top: 90px solid transparent; z-index: 4; border-radius: 0 0 8px 8px; }
-        .tapa { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 95px solid #dca743; transform-origin: top; transition: transform 0.6s ease; z-index: 5; }
+        .tapa { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 95px solid #dca743; transform-origin: top; transform: rotateX(0deg); transition: transform 0.6s ease; z-index: 5; }
         .sello { position: absolute; top: 75px; left: 120px; width: 40px; height: 40px; background: #d9383a; border-radius: 50%; z-index: 6; display: flex; justify-content: center; align-items: center; color: white; font-size: 18px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s ease; }
         .sobre-wrapper.abierto .tapa { transform: rotateX(180deg); z-index: 2; }
         
