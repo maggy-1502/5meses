@@ -195,16 +195,18 @@ Para siempre, Yo
                         }, 900);
                         }
                         
-                        function toggleMusica() {
-                        var audio = document.getElementById('musica');
-                        var btnMusica = document.getElementById('btn-musica');
-                        if (audio && audio.paused) {
-                        audio.play().catch(function(e){});
-                        if (btnMusica) btnMusica.innerText = "⏸";
-                        } else if (audio) {audio.pause();
-                        if (btnMusica) btnMusica.innerText = "▶";
-                        }
-                        }
+                                function toggleMusica() {
+            var audio = document.getElementById('musica');
+            var btnMusica = document.getElementById('btn-musica');
+            if (audio && audio.paused) {
+                audio.play().catch(function(e){});
+                if (btnMusica) btnMusica.innerText = "⏸";
+            } else if (audio) {
+                audio.pause();
+                if (btnMusica) btnMusica.innerText = "▶";
+            }
+        }
+
                         
                         function toggleModoNoche() {
                         document.body.classList.toggle('modo-noche-activo');
