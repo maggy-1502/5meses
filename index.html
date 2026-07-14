@@ -99,6 +99,42 @@
                 <div class="sello" id="sello-carta" onclick="abrirCarta()">❤️</div>
                 <div class="hoja-carta">
                     <div class="texto-carta" id="texto-tipeado"></div>
+                    <div class="firma" id="firma-carta" style="display:none;">Para siempre, Yo</div>
+                    <button id="btn-cerrar-carta" class="btn-cerrar-carta" onclick="cerrarCarta()" style="display: none;">Guardar carta ❤️</button>
+                </div> <!-- Cierre de hoja-carta -->
+            </div> <!-- Cierre de sobre-wrapper -->
+        </div> <!-- Cierre de seccion-sobre -->
+
+        <!-- SECCIÓN DEL CONTADOR -->
+        <div class="seccion-contador" id="seccion-contador">
+            <h2 class="titulo-seccion">El tiempo a tu lado...</h2>
+            <div class="cuadrícula-contador">
+                <div class="bloque-tiempo bloque-meses"><div class="numero-tiempo">❤️ 5</div><div class="etiqueta-tiempo">Meses</div></div>
+                <div class="bloque-tiempo"><div class="numero-tiempo" id="c-dias">00</div><div class="etiqueta-tiempo">Días</div></div>
+                <div class="bloque-tiempo"><div class="numero-tiempo" id="c-horas">00</div><div class="etiqueta-tiempo">Horas</div></div>
+                <div class="bloque-tiempo"><div class="numero-tiempo" id="c-minutos">00</div><div class="etiqueta-tiempo">Minutos</div></div>
+                <div class="bloque-tiempo"><div class="numero-tiempo" id="c-segundos">00</div><div class="etiqueta-tiempo">Segundos</div></div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE LA GALERÍA -->
+<div class="seccion-galeria" id="seccion-galeria">
+            <h2 class="titulo-seccion">Nuestros Momentos</h2>
+            <div class="carrusel-horizontal">
+                <div class="foto-item"><img src="foto1.jpg" alt="1"></div>
+                <div class="foto-item"><img src="foto2.jpg" alt="2"></div>
+                <div class="foto-item"><img src="foto3.jpg" alt="3"></div>
+                <div class="foto-item"><img src="foto4.jpg" alt="4"></div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN FINAL -->
+        <div class="seccion-final" id="seccion-final">
+            <div class="gran-corazon">❤️</div>
+            <div class="texto-final-1">Felices 5 meses ❤️</div>
+            <div class="texto-final-2">Gracias por llegar a mi vida.<br>Te amo muchísimo.</div>
+        </div>
+    </div> <!-- Cierre de contenedor-principal -->
 
 Para siempre, Yo
 
@@ -214,43 +250,47 @@ Para siempre, Yo
                         if (btn) btn.innerText = document.body.classList.contains('modo-noche-activo') ? "☀️" : "🌙";
                         }
                         
-                        var cartaAbierta = false;
-                        function abrirCarta() {
-                        if (cartaAbierta) return;
-                        cartaAbierta = true;
-                        if (navigator.vibrate) navigator.vibrate(40);
+                                var cartaAbierta = false;
+        function abrirCarta() {
+            if (cartaAbierta) return;
+            cartaAbierta = true;
+            if (navigator.vibrate) navigator.vibrate(40);
+
+            document.getElementById('sello-carta').style.transform = 'scale(0)';
+            document.getElementById('sobre').classList.add('abierto');
+
+            setTimeout(function() {
+                var contenedorTexto = document.getElementById('texto-tipeado');
+                contenedorTexto.innerHTML = ""; 
+
+                // REVISA ESTA LÍNEA: Debe decir estrictamente 'textoAmor'
+                var caracteres = Array.from(textoAmor);
+                var idx = 0;
+
+                function escribir() {
+                    if (idx < caracteres.length) {
+                        // REVISA ESTA LÍNEA: Debe llevar 'caracteres[idx]'
+                        contenedorTexto.innerHTML += caracteres[idx];
+                        var actual = caracteres[idx];
+                        idx++;
                         
-                        document.getElementById('sello-carta').style.transform = 'scale(0)';
-                        document.getElementById('sobre').classList.add('abierto');
+                        var delay = 35;
+                        if (actual === '.' || actual === ',') delay = 250;
                         
-                        setTimeout(function() {
-                        var contenedorTexto = document.getElementById('texto-tipeado');
-                        contenedorTexto.innerHTML = "";
-                        var caracteres = textoAmor.split("");
-                        var idx = 0;
-                        
-                        function escribir() {
-                        if (idx < caracteres.length) {
-                                    contenedorTexto.innerHTML += caracteres[idx];
-                                    var actual = caracteres[idx];
-                                    idx++;
-                                    
-                                    var delay = 35;
-                                    if (actual === '.' || actual === ',') delay = 250;
-                            
-                            setTimeout(escribir, delay);
-                            } else {
-                            document.getElementById('firma-carta').style.display = 'block';
-                            document.getElementById('btn-cerrar-carta').style.display = 'block';
-                            document.getElementById('seccion-contador').style.opacity = 1;
-                            document.getElementById('seccion-galeria').style.opacity = 1;
-                            document.getElementById('seccion-final').style.opacity = 1;
-                            iniciarContador();
-                            }
-                            }
-                            escribir();
-                            }, 1600);
-                            }
+                        setTimeout(escribir, delay);
+                    } else {
+                        document.getElementById('firma-carta').style.display = 'block';
+                        document.getElementById('btn-cerrar-carta').style.display = 'block';
+                        document.getElementById('seccion-contador').style.opacity = 1;
+                        document.getElementById('seccion-galeria').style.opacity = 1;
+                        document.getElementById('seccion-final').style.opacity = 1;
+                        iniciarContador();
+                    }
+                }
+                escribir();
+            }, 1600);
+        }
+
                             
                             function cerrarCarta() {
                             document.getElementById('sobre').classList.remove('abierto');
