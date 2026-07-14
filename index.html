@@ -68,65 +68,35 @@
         .texto-final-1 { font-size: 26px; font-weight: 600; margin: 20px 0; color: var(--rosa-pastel); }
         .texto-final-2 { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--dorado); }
         
-        .gota-corazon { position: fixed; top: -20px; color: #ffb7b2; font-size: 20px; pointer-events: none; z-index: 9999; animation: caidaCorazonesAnim 3s linear forwards; }
+       .gota-corazon { position: fixed; top: -20px; color: #ffb7b2; font-size: 20px; pointer-events: none; z-index: 9999; animation: caidaCorazonesAnim 3s linear forwards; }
         @keyframes caidaCorazonesAnim { to { transform: translateY(105vh) rotate(360deg); } }
         
         .btn-cerrar-carta { display: block; margin: 20px auto 0 auto; padding: 10px 20px; background: #d9383a; color: white; border: none; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
-   /* Organiza los nuevos botones y el contador debajo de tus textos */
-.contenedor-inferior-detalles {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 30px;
-    color: white;
-    text-align: center;
-}
-
-/* Estilo estético para tus dos botones */
-.boton-amor {
-    background-color: #ff4d6d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    transition: transform 0.2s;
-}
-
-.boton-amor:hover {
-    transform: scale(1.05);
-}
-
-.contador-estilo {
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
     </style>
 </head>
 <body>
 
+    <!-- REPRODUCTOR DE MÚSICA -->
     <audio id="musica" src="like-you-do.mp3" loop></audio>
 
+    <!-- BOTONES FLOTANTES SUPERIORES -->
     <div class="botones-fijos">
         <button class="btn-circular" id="btn-musica" onclick="toggleMusica()">▶</button>
         <button class="btn-circular" id="btn-noche" onclick="toggleModoNoche()">🌙</button>
     </div>
 
-    <!-- PANTALLA BIENVENIDA CON SEGURIDAD TOTAL DE CLICS -->
+    <!-- PANTALLA DE BIENVENIDA -->
     <div id="bienvenida" onclick="iniciarExperienciaAmor()">
         <div class="corazon-latido" id="icono-central">❤️</div>
         <div class="texto-bienvenida" id="txt1">Para el hombre más lindo del mundo ❤️</div>
         <div class="texto-bienvenida" id="txt2">Felices 5 meses, mi amorcito.</div>
     </div>
 
+    <!-- CONTENEDOR PRINCIPAL DE LA EXPERIENCIA -->
     <div class="contenedor-principal" id="scroll-area">
         <div class="estrellas" id="capa-estrellas"></div>
 
+        <!-- SECCIÓN DE LA CARTA (SOBRE) -->
         <div class="seccion-sobre">
             <div class="sobre-wrapper" id="sobre">
                 <div class="tapa"></div>
@@ -135,9 +105,9 @@
                     <div class="texto-carta" id="texto-tipeado"></div>
                     <div class="firma" id="firma-carta" style="display:none;">Para siempre, Yo</div>
                     <button id="btn-cerrar-carta" class="btn-cerrar-carta" onclick="cerrarCarta()" style="display: none;">Guardar carta ❤️</button>
-                </div> <!-- Cierre de hoja-carta -->
-            </div> <!-- Cierre de sobre-wrapper -->
-        </div> <!-- Cierre de seccion-sobre -->
+                </div> 
+            </div> 
+        </div> 
 
         <!-- SECCIÓN DEL CONTADOR -->
         <div class="seccion-contador" id="seccion-contador">
@@ -167,11 +137,10 @@
             <div class="gran-corazon">❤️</div>
             <div class="texto-final-1">Felices 5 meses ❤️</div>
             <div class="texto-final-2">Gracias por llegar a mi vida.<br>Te amo con toda mi alma.</div>
-        </div>
+                        </div>
+
     </div> <!-- Cierre de contenedor-principal -->
 
-
-                    
                    <script>
                         
                     // CONFIGURACIÓN DE TU FECHA REAL (Año, Mes-1, Día)
@@ -315,41 +284,48 @@
                                             }
                                             
                                             var lluviaActivada = false;
-                                            window.addEventListener('scroll', function() {
-                                            var seccionFinal = document.getElementById('seccion-final');
-                                            if (seccionFinal) {
-                                            var posicion = seccionFinal.getBoundingClientRect().top;
-                                            var pantallaAltura = window.innerHeight;
-                                            if (posicion < pantallaAltura && !lluviaActivada && cartaAbierta) {
-                                                             lluviaActivada = true;
-                                                             activarLluviaFinal();
-                                                             }
-                                                             }
-                                                             });
-                                                             
-                                                             function activarLluviaFinal() {
-                                                             setInterval(function() {
-                                                             var gota = document.createElement('div');
-                                                gota.className = 'gota-corazon';
-                                                gota.innerText = ['❤️', '💖', '✨', '💕'][Math.floor(Math.random() * 4)];
-                                                gota.style.left = Math.random() * 100 + 'vw';
-                                                gota.style.fontSize = Math.random() * 20 + 15 + 'px';
-                                                document.body.appendChild(gota);
-                                                setTimeout(function() { gota.remove(); }, 3500);
-                                                }, 200);
-                                                }
-                                                
-                                                document.addEventListener('touchmove', function(e) {
-                                                if (e.touches && e.touches[0]) {
-                                                var touch = e.touches[0];
-                                                var chispa = document.createElement('div');
-                                                chispa.className = 'chispa';
-                                                chispa.style.top = touch.pageY + 'px';
-                                                chispa.style.left = touch.pageX + 'px';
-                                                document.body.appendChild(chispa);
-                                                setTimeout(function() { chispa.remove(); }, 500);
-                                                }
-                                                }, { passive: true });
-                                                    </script>
+
+window.addEventListener('scroll', function() {
+    var seccionFinal = document.getElementById('seccion-final');
+    if (seccionFinal) {
+        var posicion = seccionFinal.getBoundingClientRect().top;
+        var pantallaAltura = window.innerHeight;
+        // Solo activa la lluvia si la sección final es visible y ya se abrió la carta
+        if (posicion < pantallaAltura && !lluviaActivada && cartaAbierta) {
+            lluviaActivada = true;
+            activarLluviaFinal();
+        }
+    }
+});
+
+function activarLluviaFinal() {
+    setInterval(function() {
+        var gota = document.createElement('div');
+        gota.className = 'gota-corazon';
+        // Alterna entre diferentes emojis románticos de forma aleatoria
+        gota.innerText = ['❤️', '💖', '✨', '💕'][Math.floor(Math.random() * 4)];
+        gota.style.left = Math.random() * 100 + 'vw';
+        gota.style.fontSize = Math.random() * 20 + 15 + 'px';
+        document.body.appendChild(gota);
+        
+        // Borra la gota después de que termine su animación de caída para no saturar la memoria
+        setTimeout(function() { gota.remove(); }, 3500);
+    }, 200);
+}
+
+// EFECTO MÁGICO: Chispas al deslizar el dedo en pantallas táctiles
+document.addEventListener('touchmove', function(e) {
+    if (e.touches && e.touches[0]) {
+        var touch = e.touches[0];
+        var chispa = document.createElement('div');
+        chispa.className = 'chispa';
+        chispa.style.top = touch.pageY + 'px';
+        chispa.style.left = touch.pageX + 'px';
+        document.body.appendChild(chispa);
+        
+        setTimeout(function() { chispa.remove(); }, 500);
+    }
+}, { passive: true });
+</script>
 </body>
 </html>
