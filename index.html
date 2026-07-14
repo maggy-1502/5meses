@@ -221,7 +221,7 @@ Para siempre, Yo
                         setTimeout(function() {
                         var contenedorTexto = document.getElementById('texto-tipeado');
                         contenedorTexto.innerHTML = "";
-                        var caracteres = Array.from(textoAmor);
+                        var caracteres = textoAmor.split("");
                         var idx = 0;
                         
                         function escribir() {
